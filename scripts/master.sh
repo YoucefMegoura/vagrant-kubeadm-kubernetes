@@ -4,7 +4,7 @@
 
 set -euxo pipefail
 
-MASTER_IP="10.0.0.10"
+MASTER_IP="10.0.0.11"
 NODENAME=$(hostname -s)
 POD_CIDR="192.168.0.0/16"
 
@@ -83,3 +83,10 @@ mkdir -p /home/vagrant/.kube
 sudo cp -i /vagrant/configs/config /home/vagrant/.kube/
 sudo chown 1000:1000 /home/vagrant/.kube/config
 EOF
+
+
+# Installing NFS client
+sudo apt install -y nfs-common
+
+sudo mkdir -p /data/
+sudo mount -t nfs 10.0.0.10:/data /data
