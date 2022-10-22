@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
   config.ssh.password = "vagrant"
   #config.ssh.private_key_path = "/home/youcefmegoura/.ssh/id_rsa"
   config.vm.provision "shell", env: {"IP_NW" => IP_NW, "IP_START" => IP_START}, inline: <<-SHELL
-      apt update -y
+      apt-get update -y
       echo "$IP_NW$((IP_START)) nfs-node" >> /etc/hosts
       echo "$IP_NW$((IP_START+1)) master-node" >> /etc/hosts
       echo "$IP_NW$((IP_START+2)) worker-node01" >> /etc/hosts

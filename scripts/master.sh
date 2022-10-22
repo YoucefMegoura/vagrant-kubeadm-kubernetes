@@ -86,7 +86,7 @@ EOF
 
 
 # Installing NFS client
-sudo apt install -y nfs-common
+sudo apt-get install -y nfs-common
 
 sudo mkdir -p /data/
 sudo mount -t nfs 10.0.0.10:/data /data

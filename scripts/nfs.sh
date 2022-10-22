@@ -9,16 +9,16 @@ CLUSTER_NETWORK_CIDR="10.0.0.1/24"
 NODENAME=$(hostname -s)
 
 
-sudo apt update -y
+sudo apt-get update -y
 
 # Install nfs server
-sudo apt install -y nfs-kernel-server
+sudo apt-get install -y nfs-kernel-server
 
 # Make shared NFS directory
 sudo mkdir -p /data
 
 # Set directory permissions
-sudo chown -R nobody:nogroup /data
+sudo chown -R vagrant:vagrant /data
 
 # Set file permissions
 sudo chmod 777 /data
