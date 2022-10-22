@@ -8,6 +8,10 @@ MASTER_IP="10.0.0.11"
 NODENAME=$(hostname -s)
 POD_CIDR="192.168.0.0/16"
 
+NFS_IP="10.0.0.10"
+SHARED_DIRECTORY="/data"
+MOUNT_HOST_DIRECTORY="/data"
+
 sudo kubeadm config images pull
 
 echo "Preflight Check Passed: Downloaded All Required Images"
@@ -88,5 +92,5 @@ EOF
 # Installing NFS client
 sudo apt-get install -y nfs-common
 
-sudo mkdir -p /data/
-sudo mount -t nfs 10.0.0.10:/data /data
+sudo mkdir -p $SHARED_DIRECTORY
+sudo mount -t nfs $NFS_IP:$SHARED_DIRECTORY $MOUNT_HOST_DIRECTORY

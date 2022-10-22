@@ -7,6 +7,7 @@ set -euxo pipefail
 
 CLUSTER_NETWORK_CIDR="10.0.0.1/24"
 NODENAME=$(hostname -s)
+SHARED_DIRECTORY="/data"
 
 
 sudo apt-get update -y
@@ -15,16 +16,16 @@ sudo apt-get update -y
 sudo apt-get install -y nfs-kernel-server
 
 # Make shared NFS directory
-sudo mkdir -p /data
+sudo mkdir -p $SHARED_DIRECTORY
 
 # Set directory permissions
-sudo chown -R vagrant:vagrant /data
+sudo chown -R $NODENAME:$NODENAME $SHARED_DIRECTORY
 
 # Set file permissions
-sudo chmod 777 /data
+sudo chmod 777 $SHARED_DIRECTORY
 
 cat >> /etc/exports << EOF
-/data $CLUSTER_NETWORK_CIDR(rw,sync,no_subtree_check)
+$SHARED_DIRECTORY $CLUSTER_NETWORK_CIDR(rw,sync,no_subtree_check)
 EOF
 
 # Restart NFS server
