@@ -96,7 +96,8 @@ sudo mkdir -p $SHARED_DIRECTORY
 sudo mount -t nfs $NFS_IP:$SHARED_DIRECTORY $MOUNT_HOST_DIRECTORY
 
 # Automatically mounting NFS
-cat >> /etc/fstab << EOF
+sudo chmod a+w /etc/fstab
+sudo cat >> /etc/fstab << EOF
 # <file system>     <dir>       <type>   <options>   <dump>	<pass>
 10.0.0.10:/data     /data       nfs      defaults    0      0
 EOF
